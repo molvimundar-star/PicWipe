@@ -54,7 +54,7 @@ export default function Index() {
     const onboardData = [
         {
             id: 1,
-            title: 'Welcome to SwipeTrash',
+            title: 'Welcome to PicWipe',
             description: 'Have fun organizing your Gallery',
             icon: images.slide_2,
         },
