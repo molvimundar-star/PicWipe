@@ -32,7 +32,7 @@ export default function Header() {
       <Text
         className="text-4xl font-rubik-semibold text-blue-600"
       >
-        sWipe
+        PicWipe
       </Text>
       {<TouchableOpacity
       onPress={()=>router.navigate('/(root)/settings')}
