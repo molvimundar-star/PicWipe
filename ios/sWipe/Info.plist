@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>sWipe</string>
+    <string>PicWipe</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -28,13 +28,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>myapp</string>
-          <string>com.gomodtidy.swipe</string>
+          <string>com.sadsha.picwipe</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+swipe</string>
+          <string>exp+picwipe</string>
         </array>
       </dict>
     </array>
@@ -54,9 +54,9 @@
     <key>NSMicrophoneUsageDescription</key>
     <string>Allow $(PRODUCT_NAME) to access your microphone</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Allow SwipeTrash to save photos.</string>
+    <string>Allow PicWipe to save photos.</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Allow SwipeTrash to access your photos.</string>
+    <string>Allow PicWipe to access your photos.</string>
     <key>NSUserActivityTypes</key>
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
