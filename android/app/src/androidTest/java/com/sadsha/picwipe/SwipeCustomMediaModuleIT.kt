@@ -1,4 +1,4 @@
-package com.gomodtidy.swipe
+package com.sadsha.picwipe
 
 import android.content.ContentValues
 import android.content.Context

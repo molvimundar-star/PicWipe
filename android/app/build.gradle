@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.gomodtidy.swipe'
+    namespace 'com.sadsha.picwipe'
     defaultConfig {
-        applicationId 'com.gomodtidy.swipe'
+        applicationId 'com.sadsha.picwipe'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

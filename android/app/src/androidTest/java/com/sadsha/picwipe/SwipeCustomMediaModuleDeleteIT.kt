@@ -1,4 +1,4 @@
-package com.gomodtidy.swipe
+package com.sadsha.picwipe
 
 import android.app.Activity
 import android.app.Instrumentation
