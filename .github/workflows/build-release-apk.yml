@@ -15,6 +15,14 @@
 name: Build release APK (test-signed)
 
 on:
+  # workflow_dispatch is the normal trigger (Actions tab). The PAT used by
+  # automation lacks Actions: write, so dispatch via API returns 404; the
+  # push trigger below (paths-limited to this file) is the fallback that
+  # lets a push of this file start exactly one build.
+  push:
+    branches: [sadsha-remix]
+    paths:
+      - '.github/workflows/build-release-apk.yml'
   workflow_dispatch:
 
 permissions:
