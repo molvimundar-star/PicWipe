@@ -79,8 +79,8 @@ const MonthList = () => {
             <View
                 className={`p-4 m-2 rounded-2xl shadow-md flex-row items-center ${
                     isInProgress
-                        ? 'bg-blue-600'
-                        : 'bg-white border border-blue-300'
+                        ? 'bg-amber-600'
+                        : 'bg-white border border-amber-300'
                 }`}
             >
                 {/* Thumbnail Image */}
@@ -92,17 +92,17 @@ const MonthList = () => {
                 {/* Text Info */}
                 <View className="flex-1">
                     <Text
-                        className={`text-lg font-semibold ${isInProgress ? 'text-white' : 'text-blue-600'}`}
+                        className={`text-lg font-semibold ${isInProgress ? 'text-white' : 'text-amber-600'}`}
                     >
                         {item.name}
                     </Text>
                     <Text
-                        className={`text-sm ${isInProgress ? 'text-blue-200' : 'text-blue-400'}`}
+                        className={`text-sm ${isInProgress ? 'text-amber-200' : 'text-amber-400'}`}
                     >
                         {item.itemCount} items cleaned
                     </Text>
                     <Text
-                        className={`text-xs ${isInProgress ? 'text-blue-100' : 'text-blue-600'}`}
+                        className={`text-xs ${isInProgress ? 'text-amber-100' : 'text-amber-600'}`}
                     >
                         {item.totalSize.toFixed(2)} MB freed
                     </Text>
@@ -110,7 +110,7 @@ const MonthList = () => {
 
                 {/* In Progress Badge (Only shows if true) */}
                 {isInProgress && (
-                    <Text className="px-3 py-1 text-xs font-bold text-blue-600 bg-white rounded-full">
+                    <Text className="px-3 py-1 text-xs font-bold text-amber-600 bg-white rounded-full">
                         In Progress
                     </Text>
                 )}

@@ -1,4 +1,4 @@
-package com.gomodtidy.swipe
+package com.sadsha.picwipe
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

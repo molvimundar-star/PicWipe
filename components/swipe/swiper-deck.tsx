@@ -536,7 +536,7 @@ const SwiperDeck = ({
                         <Text className="text-gray-800 font-medium">Review Again</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                        className="flex-1 bg-blue-500 py-3 rounded-lg items-center"
+                        className="flex-1 bg-amber-500 py-3 rounded-lg items-center"
                         onPress={proceedToDelete}
                     >
                         <Text className="text-white font-medium">Proceed</Text>

@@ -30,9 +30,9 @@ export default function Header() {
       />}
       </TouchableOpacity>
       <Text
-        className="text-4xl font-rubik-semibold text-blue-600"
+        className="text-4xl font-rubik-semibold text-amber-600"
       >
-        sWipe
+        PicWipe
       </Text>
       {<TouchableOpacity
       onPress={()=>router.navigate('/(root)/settings')}

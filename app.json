@@ -1,22 +1,22 @@
 {
 	"expo": {
-		"name": "sWipe",
-		"owner": "gomodtidy2",
-		"slug": "swipe",
+		"name": "PicWipe",
+		"owner": "sadsha",
+		"slug": "picwipe",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
-		"scheme": "myapp",
+		"scheme": "picwipe",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.gomodtidy.swipe"
+			"bundleIdentifier": "com.sadsha.picwipe"
 		},
 		"android": {
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/icon.png",
-				"backgroundColor": "#ffffff"
+				"backgroundColor": "#F59E0B"
 			},
 			"permissions": [
 				"android.permission.READ_EXTERNAL_STORAGE",
@@ -28,7 +28,7 @@
 				"android.permission.READ_MEDIA_VIDEO",
 				"android.permission.MANAGE_MEDIA"
 			],
-			"package": "com.gomodtidy.swipe"
+			"package": "com.sadsha.picwipe"
 		},
 		"web": {
 			"bundler": "metro",
@@ -39,9 +39,9 @@
 			[
 				"expo-media-library",
 				{
-					"photosPermission": "Allow SwipeTrash to access your photos.",
-					"savePhotosPermission": "Allow SwipeTrash to save photos.",
-					"videosPermission": "Allow SwipeTrash to access your videos.",
+					"photosPermission": "Allow PicWipe to access your photos.",
+					"savePhotosPermission": "Allow PicWipe to save photos.",
+					"videosPermission": "Allow PicWipe to access your videos.",
 					"isAccessMediaLocationEnabled": true
 				}
 			],
@@ -60,7 +60,7 @@
 				{
 					"image": "./assets/images/splash.png",
 					"resizeMode": "cover",
-					"backgroundColor": "#ffffff",
+					"backgroundColor": "#F59E0B",
 					"enableFullScreenImage_legacy": true
 				}
 			],
@@ -84,9 +84,6 @@
 		"extra": {
 			"router": {
 				"origin": false
-			},
-			"eas": {
-				"projectId": "e109229a-a158-4218-9dd8-c6703215f3ee"
 			}
 		}
 	}

@@ -1,0 +1,54 @@
+# Builds a signed release AAB for Play Store publishing.
+# Manual trigger only. Needs the release keystore as GitHub Actions secrets:
+#   ANDROID_KEYSTORE_BASE64 — base64 of the release .keystore/.jks file
+#   KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD
+# The keystore is NOT in this repo; it is created and kept by the account owner.
+name: Build release AAB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: sadsha-remix
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Install JS dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Restore release keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/app/release.keystore
+
+      - name: Build release AAB
+        run: |
+          cd android && ./gradlew bundleRelease --no-daemon --stacktrace \
+            -PPICWIPE_RELEASE_STORE_FILE=release.keystore \
+            -PPICWIPE_RELEASE_STORE_PASSWORD="${{ secrets.KEYSTORE_PASSWORD }}" \
+            -PPICWIPE_RELEASE_KEY_ALIAS="${{ secrets.KEY_ALIAS }}" \
+            -PPICWIPE_RELEASE_KEY_PASSWORD="${{ secrets.KEY_PASSWORD }}"
+
+      - name: Upload release AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: picwipe-release-aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error

@@ -32,9 +32,9 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="myapp"/>
-        <data android:scheme="com.gomodtidy.swipe"/>
-        <data android:scheme="exp+swipe"/>
+        <data android:scheme="picwipe"/>
+        <data android:scheme="com.sadsha.picwipe"/>
+        <data android:scheme="exp+picwipe"/>
       </intent-filter>
     </activity>
   </application>

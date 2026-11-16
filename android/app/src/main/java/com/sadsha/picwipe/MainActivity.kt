@@ -1,4 +1,4 @@
-package com.gomodtidy.swipe
+package com.sadsha.picwipe
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

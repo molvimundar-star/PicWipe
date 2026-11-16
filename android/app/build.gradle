@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.gomodtidy.swipe'
+    namespace 'com.sadsha.picwipe'
     defaultConfig {
-        applicationId 'com.gomodtidy.swipe'
+        applicationId 'com.sadsha.picwipe'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -103,6 +103,17 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            // Release keystore is NOT in this repo. It is provided at build
+            // time via -P properties (see .github/workflows/build-release-aab.yml).
+            // Without them this config stays empty and is never used.
+            if (project.hasProperty('PICWIPE_RELEASE_STORE_FILE')) {
+                storeFile file(project.property('PICWIPE_RELEASE_STORE_FILE'))
+                storePassword project.property('PICWIPE_RELEASE_STORE_PASSWORD')
+                keyAlias project.property('PICWIPE_RELEASE_KEY_ALIAS')
+                keyPassword project.property('PICWIPE_RELEASE_KEY_PASSWORD')
+            }
+        }
     }
     buildTypes {
         debug {
@@ -111,7 +122,11 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            if (project.hasProperty('PICWIPE_RELEASE_STORE_FILE')) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
             shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
