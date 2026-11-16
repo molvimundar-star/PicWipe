@@ -34,6 +34,10 @@ A debug APK is also built automatically by GitHub Actions on every push to the `
 
 The release AAB is built by `.github/workflows/build-release-aab.yml` (manual trigger). It needs the release keystore, which is **not** in this repo — provide it as GitHub Actions secrets (`ANDROID_KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`).
 
+### Test-signed release APK
+
+`.github/workflows/build-release-apk.yml` (manual trigger) builds an optimized release APK per ABI, signed with the committed throwaway **test keystore** (`android/app/test.keystore`, alias `picwipe-test`). That keystore is test-only — it lets a test build install over the previous test build, but it can **never** go to Play Store. Play releases must use the owner's real keystore via `build-release-aab.yml`. A test-signed release APK also cannot install over the debug APK (different signing key) — uninstall the debug APK first.
+
 ## Credits & License
 
 PicWipe is based on **sWipe** by madhavpcm (https://github.com/madhavpcm/sWipe), rebranded for SadSha with a new name, icon, colours and Android package (`com.sadsha.picwipe`). The core swipe-to-sort behaviour is unchanged.

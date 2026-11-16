@@ -1,0 +1,86 @@
+# Builds a TEST-SIGNED release APK for PicWipe (Expo SDK 52 / React Native 0.76).
+# Manual trigger only. This is NOT the Play Store build.
+#
+# Signing: Qasim's real release keystore is NOT in this repo and is never
+# created here. This workflow signs with a THROWAWAY TEST keystore
+# (android/app/test.keystore, alias picwipe-test, password picwipe-test),
+# generated on first run and committed to the repo so every test build
+# carries the SAME key (a new test build installs over the previous one).
+# It is clearly marked test-only: it can NEVER go to Play Store. The real
+# Play release still goes through build-release-aab.yml with Qasim's own
+# keystore from GitHub secrets.
+#
+# Output: one optimized release APK per ABI (arm64-v8a, armeabi-v7a, x86,
+# x86_64). arm64-v8a is the one for modern phones.
+name: Build release APK (test-signed)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: sadsha-remix
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Android SDK packages
+        # Runner image already has ANDROID_HOME + cmdline-tools preinstalled;
+        # setup-android@v3 was removed because its default `tools` package
+        # no longer exists in the SDK repository and fails the step.
+        run: |
+          export ANDROID_HOME=/usr/local/lib/android/sdk
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Install JS dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Create throwaway TEST keystore (first run only)
+        run: |
+          if [ ! -f android/app/test.keystore ]; then
+            keytool -genkeypair -v -keystore android/app/test.keystore \
+              -alias picwipe-test -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass picwipe-test -keypass picwipe-test \
+              -dname "CN=PicWipe Test, OU=SadSha, O=SadSha, C=PK"
+            keytool -list -v -keystore android/app/test.keystore \
+              -storepass picwipe-test -alias picwipe-test | head -20
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add android/app/test.keystore
+            git commit -m "Add throwaway TEST keystore for test-signed release APKs [skip ci]"
+            git push
+          else
+            echo "Test keystore already committed, reusing it."
+          fi
+
+      - name: Build release APK (per ABI)
+        run: |
+          cd android && ./gradlew assembleRelease --no-daemon --stacktrace \
+            -PPICWIPE_SPLIT_ABI=true \
+            -PPICWIPE_RELEASE_STORE_FILE=test.keystore \
+            -PPICWIPE_RELEASE_STORE_PASSWORD=picwipe-test \
+            -PPICWIPE_RELEASE_KEY_ALIAS=picwipe-test \
+            -PPICWIPE_RELEASE_KEY_PASSWORD=picwipe-test
+          ls -la app/build/outputs/apk/release/
+
+      - name: Upload release APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: picwipe-release-apk
+          path: android/app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
