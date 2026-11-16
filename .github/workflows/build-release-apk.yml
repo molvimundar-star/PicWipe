@@ -15,7 +15,8 @@
 # Standalone: expo-dev-client was REMOVED from package.json (it made every
 # build a dev-client that opens a "Development Build" launcher needing a
 # Metro server). Release (and debug) builds now bundle the JS and run
-# with no dev server.
+# with no dev server. (Trigger note: this file is paths-filtered — any
+# change here starts one release build.)
 name: Build release APK (test-signed)
 
 on:
