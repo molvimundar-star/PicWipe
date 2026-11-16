@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "real-estate",
@@ -58,7 +59,6 @@
         "react-native-web": "~0.19.13",
         "react-native-webview": "13.12.5",
         "rn-swiper-list": "^2.2.0",
-        "rn-tinder-card": "^1.7.0",
         "tailwindcss": "^3.4.17",
       },
       "devDependencies": {
@@ -2026,8 +2026,6 @@
     "rimraf": ["rimraf@5.0.10", "", { "dependencies": { "glob": "^10.3.7" }, "bin": { "rimraf": "dist/esm/bin.mjs" } }, "sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ=="],
 
     "rn-swiper-list": ["rn-swiper-list@2.2.0", "", { "dependencies": { "react-native-gesture-handler": "*", "react-native-reanimated": "*" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-H+iCTqW0scwS07QL2ZX/SpYYZTG0uU+/AaKkLpnBwF9GEmGZOc/Ld6b5ihFDzfVarK9sYSfDQeXmXZlOLLZ1nA=="],
-
-    "rn-tinder-card": ["rn-tinder-card@1.7.0", "", { "dependencies": { "react-native-gesture-handler": "*", "react-native-reanimated": "*" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-P7UIdQRQQVUAwWARzVmwSa91RszK8d3g0Y7Bt5eDrSAJnYTVNw+6r5ihOqYXro9/7SgSi7MxsLIGRQC+Gsh67Q=="],
 
     "run-parallel": ["run-parallel@1.2.0", "", { "dependencies": { "queue-microtask": "^1.2.2" } }, "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA=="],
 
