@@ -119,12 +119,13 @@ android {
         abi {
             // Per-ABI APKs only when explicitly requested (release APK builds).
             // Debug builds stay universal so the debug workflow is unaffected.
-            // AGP 8 renamed the flags: isEnable / isUniversalApk (not enable /
-            // universalApk) — the old names fail configuration with
-            // "Could not find method enable()".
+            // AGP 8: these are properties, so Groovy needs ASSIGNMENT syntax
+            // (`enable = ...`), not method-call syntax (`enable ...`) — the
+            // method form fails configuration with "Could not find method
+            // enable()". (`isEnable` does not exist on this AGP version.)
             reset()
-            isEnable = (findProperty('PICWIPE_SPLIT_ABI') ?: false).toBoolean()
-            isUniversalApk = false
+            enable = (findProperty('PICWIPE_SPLIT_ABI') ?: false).toBoolean()
+            universalApk = false
             include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
     }
